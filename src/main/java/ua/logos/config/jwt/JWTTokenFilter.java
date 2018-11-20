@@ -1,45 +1,83 @@
 package ua.logos.config.jwt;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import static ua.logos.config.constants.SecurityConstants.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import io.jsonwebtoken.*;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-public class JWTTokenFilter extends GenericFilterBean {
+@Component
+public class JWTTokenFilter  {
 
-	@Autowired
-	private JWTTokenProvider jwtTokenProvider;
+	public String getUsernameFromToken(String token) {
+		return getClaimFromToken(token, Claims::getSubject);
+	}
 
-//	public JWTTokenFilter(JWTTokenProvider jwtTokenProvider) {
-//	this.jwtTokenProvider = jwtTokenProvider;
-//}
-	
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		
-		String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
-		
-		try {
-			if (token != null && jwtTokenProvider.validateToken(token)) {
-				Authentication auth = jwtTokenProvider.getAuthentication(token);
-				SecurityContextHolder.getContext().setAuthentication(auth);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		chain.doFilter(request, response);
-	}	
+	public Date getExpirationDateFromToken(String token) {
+		return getClaimFromToken(token, Claims::getExpiration);
+	}
+
+	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+		final Claims claims = getAllClaimsFromToken(token);
+		return claimsResolver.apply(claims);
+	}
+
+	public String generateToken(Authentication authentication) {
+		final String authorities = authentication.getAuthorities().stream()
+				.map(GrantedAuthority::getAuthority)
+				.collect(Collectors.joining(","));
+
+		Date now = new Date();
+		Date validity = new Date(now.getTime() + ACCESS_TOKEN_VALIDITY_SECONDS);
+
+		return Jwts.builder()
+				.setSubject(authentication.getName())
+				.claim(AUTHORITIES_KEY, authorities)
+				.signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
+				.setIssuedAt(now) // new Date(System.currentTimeMillis())
+				.setExpiration(validity) // new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS)
+				.compact();
+	}
+
+	public Boolean validateToken(String token, UserDetails userDetails) {
+		final String username = getUsernameFromToken(token);
+		return (
+				username.equals(userDetails.getUsername())
+						&& !isTokenExpired(token));
+	}
+
+	UsernamePasswordAuthenticationToken getAuthentication(final String token, final Authentication existingAuth, final UserDetails userDetails) {
+		final JwtParser jwtParser = Jwts.parser().setSigningKey(SIGNING_KEY);
+		final Jws<Claims> claimsJws = jwtParser.parseClaimsJws(token);
+		final Claims claims = claimsJws.getBody();
+		final Collection<? extends GrantedAuthority> authorities =
+				Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+						.map(SimpleGrantedAuthority::new)
+						.collect(Collectors.toList());
+		return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
+	}
+
+	private Boolean isTokenExpired(String token) {
+		final Date expiration = getExpirationDateFromToken(token);
+		return expiration.before(new Date());
+	}
+
+	private Claims getAllClaimsFromToken(String token) {
+		return Jwts.parser()
+				.setSigningKey(SIGNING_KEY)
+				.parseClaimsJws(token)
+				.getBody();
+	}
 }

@@ -33,24 +33,6 @@ public class UserController {
         return new ResponseEntity<List<UserDTO>>(dtos, HttpStatus.OK);
     }
 
-    @PostMapping("signup")
-    public ResponseEntity<?> createUser(@RequestBody UserDTO dto) {
-        userService.save(dto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @PostMapping("signin")
-    public ResponseEntity<?> loginUser(@RequestBody SigninRequest request){
-        String token = userService.signin(request.getLogin(), request.getPassword());
-        String role = "";
-
-        if(token != null) {
-            role = userService.findByUsername(request.getLogin()).getUserType().toString();
-        }
-
-        return new ResponseEntity<>(new SigninResponse(token, role), HttpStatus.OK);
-    }
-
     @PostMapping("{userId}/image")
     public ResponseEntity<Void> uploadImage(
             @PathVariable("userId") Long id,

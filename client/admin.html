@@ -363,81 +363,6 @@
         <!--/tabs content-->
     </div>
 
-    <!-- /card -->
-    <!-- <div class="container text-center" style="margin-top: 60px">
-        <h3>Users list</h3>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped" id="modelsTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Login</th>
-                        <th>Password</th>
-                        <th>User Type</th>
-                        <th>Image</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="container text-center">
-
-        <h3>Orders list</h3>
-
-    </div>
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped" id="makesTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Orders token</th>
-                        <th>Book id</th>
-                        <th>User id</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="container text-center">
-
-        <h3>Books list</h3>
-
-    </div>
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped" id="makesTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Date</th>
-                        <th>Image</th>
-                        <th>Language</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Short info</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-
-     -->
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap4.min.js"></script>
     <script src="js/fontawesome.min.js"></script>
@@ -618,7 +543,7 @@
         function createUser() {
             let login = $('#loginUser').val();
             let password = $('#passwordUser').val();
-            let userType = $('#userTypeUser').val();
+            let roles = $('#userTypeUser').val();
             let image = $('#imageUser').val();
             // let formData = new FormData();
             // formData.append('file', $('#image-' + authorId)[0].files[0]);
@@ -627,12 +552,14 @@
             let user = {
                 login: login,
                 password: password,
-                userType: userType,
+                roles: {
+                    id: roles
+                },
                 image: image
             };
 
             $.ajax({
-                url: serverURL + 'users/signup',
+                url: serverURL + 'auth/signup',
                 method: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -718,7 +645,7 @@
             console.log(user);
 
             $.ajax({
-                url: serverURL + 'users/signin', // http://localhost:8080
+                url: serverURL + 'auth/signin', // http://localhost:8080
                 method: 'POST',
                 data: JSON.stringify(user),
                 contentType: 'application/json',
@@ -742,7 +669,7 @@
                 console.log(reguser);
 
                 $.ajax({
-                    url: serverURL + 'users/signup',
+                    url: serverURL + 'auth/signup',
                     method: 'POST',
                     data: JSON.stringify(reguser),
                     contentType: 'application/json',

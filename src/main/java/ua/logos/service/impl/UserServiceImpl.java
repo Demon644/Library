@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import ua.logos.config.jwt.JWTTokenProvider;
 import ua.logos.domain.UserDTO;
 import ua.logos.entity.UserEntity;
-import ua.logos.entity.UserType;
 import ua.logos.exception.AlreadyExistsException;
 import ua.logos.exception.ResourceNotFoundException;
 import ua.logos.repository.UserRepository;
@@ -34,19 +33,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
-    @Override
-    public void save(UserDTO dto) {
-        if(userRepository.existsByLogin(dto.getLogin())) {
-            throw new AlreadyExistsException("User with username [" + dto.getLogin() + "] already exists");
-        } else {
-            dto.setUserType(UserType.ROLE_USER);
-            dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-
-            UserEntity entity = userMapper.map(dto, UserEntity.class);
-            userRepository.save(entity);
-        }
-    }
 
     @Override
     public UserDTO changeLogin(Long id) {
@@ -113,9 +99,4 @@ public class UserServiceImpl implements UserService {
         return userMapper.map(userRepository.findByLogin(username), UserDTO.class);
     }
 
-    @Override
-    public String signin(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-        return jwtTokenProvider.createToken(username, userRepository.findByLogin(username).getUserType());
-    }
 }

@@ -1,7 +1,6 @@
 package ua.logos.domain;
 
 import lombok.Data;
-import ua.logos.entity.UserType;
 
 import javax.validation.constraints.NotNull;
 
@@ -16,9 +15,6 @@ public class UserDTO {
 
     @NotNull(message = "Field 'Password' can't be NULL")
     private String password;
-
-    @NotNull(message = "Field 'UserType' can't be NULL")
-    private UserType userType;
 
     private String image;
 

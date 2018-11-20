@@ -22,19 +22,4 @@ public class CategoryEntity extends BaseEntity{
     @Column
     private String short_info;
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getShort_info() {
-        return short_info;
-    }
-
-    public void setShort_info(String short_info) {
-        this.short_info = short_info;
-    }
 }

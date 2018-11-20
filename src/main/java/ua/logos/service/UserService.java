@@ -6,13 +6,9 @@ import java.util.List;
 
 public interface UserService {
 
-    void save(UserDTO dto);
-
     boolean existsByUsername(String username);
 
     UserDTO findByUsername(String username);
-
-    String signin(String username, String password);
 
     UserDTO changeLogin(Long id);
 

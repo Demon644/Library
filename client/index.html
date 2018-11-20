@@ -127,11 +127,11 @@
         $('#ordersLink').attr("hidden", "false");
         $('#logOutButton').attr("hidden", "false");
       }
-      $.ajaxSetup({
-        headers: {
-          'Authorization': 'Bearer ' + token
-        }
-      })
+      // $.ajaxSetup({
+      //   headers: {
+      //     'Authorization': 'Bearer ' + token
+      //   }
+      // })
 
       $('#signInForm').submit(function (e) {
         e.preventDefault();
@@ -157,7 +157,7 @@
       console.log(user);
 
       $.ajax({
-        url: serverURL + 'users/signin', // http://localhost:8080
+        url: serverURL + 'auth/signin', // http://localhost:8080
         method: 'POST',
         data: JSON.stringify(user),
         contentType: 'application/json',
@@ -181,7 +181,7 @@
         console.log(reguser);
 
         $.ajax({
-          url: serverURL + 'users/signup',
+          url: serverURL + 'auth/signup',
           method: 'POST',
           data: JSON.stringify(reguser),
           contentType: 'application/json',

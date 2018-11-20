@@ -1,74 +1,87 @@
 package ua.logos.config.jwt;
 
+import static ua.logos.config.constants.SecurityConstants.*;
+
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import ua.logos.config.constants.SecurityConstants;
-import ua.logos.entity.UserType;
 
 @Component
-public class JWTTokenProvider {
+public class JWTTokenProvider  {
 
-	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	public String createToken(String username, UserType role) {
-		Claims claims = Jwts.claims().setSubject(username);
-		claims.put("auth", AuthorityUtils.createAuthorityList(String.valueOf(role)));
-		
+	public String getUsernameFromToken(String token) {
+		return getClaimFromToken(token, Claims::getSubject);
+	}
+
+	public Date getExpirationDateFromToken(String token) {
+		return getClaimFromToken(token, Claims::getExpiration);
+	}
+
+	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+		final Claims claims = getAllClaimsFromToken(token);
+		return claimsResolver.apply(claims);
+	}
+
+	public String generateToken(Authentication authentication) {
+		final String authorities = authentication.getAuthorities().stream()
+				.map(GrantedAuthority::getAuthority)
+				.collect(Collectors.joining(","));
+
 		Date now = new Date();
-		Date validity = new Date(now.getTime() + SecurityConstants.EXPIRATION_TIME);
-		
+		Date validity = new Date(now.getTime() + ACCESS_TOKEN_VALIDITY_SECONDS);
+
 		return Jwts.builder()
-					.setClaims(claims)
-					.setIssuedAt(now)
-					.setExpiration(validity)
-					.signWith(SignatureAlgorithm.HS256, SecurityConstants.TOKEN_SECRET)
-					.compact();
+				.setSubject(authentication.getName())
+				.claim(AUTHORITIES_KEY, authorities)
+				.signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
+				.setIssuedAt(now) // new Date(System.currentTimeMillis())
+				.setExpiration(validity) // new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS)
+				.compact();
 	}
-	
-	public boolean validateToken(String token) {
-		try {
-			Jwts.parser().setSigningKey(SecurityConstants.TOKEN_SECRET).parseClaimsJws(token);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+
+	public Boolean validateToken(String token, UserDetails userDetails) {
+		final String username = getUsernameFromToken(token);
+		return (
+				username.equals(userDetails.getUsername())
+						&& !isTokenExpired(token));
 	}
-	
-	public String resolveToken(HttpServletRequest req) {
-		String bearerToken = req.getHeader(SecurityConstants.HEADER_STRING);
-		// Authorization : Bearer kbvsjhb53b4jh5v2j3v523jhv34g5v345jv
-		
-		if(bearerToken != null && bearerToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
-			return bearerToken.substring(7, bearerToken.length());
-		}
-		return null;
+
+	UsernamePasswordAuthenticationToken getAuthentication(final String token, final Authentication existingAuth, final UserDetails userDetails) {
+		final JwtParser jwtParser = Jwts.parser().setSigningKey(SIGNING_KEY);
+		final Jws<Claims> claimsJws = jwtParser.parseClaimsJws(token);
+		final Claims claims = claimsJws.getBody();
+		final Collection<? extends GrantedAuthority> authorities =
+				Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+						.map(SimpleGrantedAuthority::new)
+						.collect(Collectors.toList());
+		return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
 	}
-	
-	public String getUsername(String token) {
+
+	private Boolean isTokenExpired(String token) {
+		final Date expiration = getExpirationDateFromToken(token);
+		return expiration.before(new Date());
+	}
+
+	private Claims getAllClaimsFromToken(String token) {
 		return Jwts.parser()
-					.setSigningKey(SecurityConstants.TOKEN_SECRET)
-					.parseClaimsJws(token).getBody().getSubject();
+				.setSigningKey(SIGNING_KEY)
+				.parseClaimsJws(token)
+				.getBody();
 	}
-	
-	public Authentication getAuthentication(String token) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername(token));
-		
-		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-	}
-	
+
 }
