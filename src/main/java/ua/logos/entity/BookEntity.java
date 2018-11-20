@@ -43,10 +43,6 @@ public class BookEntity extends BaseEntity{
     @Column
     private String language;
 
-    @Column (nullable = false)
-    private String link;
-
-
     public int getQuantity() {
         return quantity;
     }

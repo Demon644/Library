@@ -134,19 +134,19 @@
             <div class="tab-pane fade active show" id="Books">
                 <div class="list-group">
                     <div class="row">
-                        <table class="table table-responsive" id="booksTable">
+                        <table class="table table-responsive mx-3" id="booksTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Image</th>
-                                    <th>Language</th>
                                     <th>Name</th>
+                                    <th>Author</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Language</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Short info</th>
-                                    <th>Author</th>
-                                    <th>Category</th>
+                                    <th>Image</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -158,7 +158,7 @@
             <div class="tab-pane fade" id="Users">
                 <div class="list-group">
                     <div class="row">
-                        <table class="table table-striped mx-3" id="usersTable">
+                        <table class="table table-responsive mx-3" id="usersTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -177,7 +177,7 @@
             <div class="tab-pane fade" id="Authors">
                 <div class="list-group">
                     <div class="row">
-                        <table class="table table-striped mx-3" id="authorsTable">
+                        <table class="table table-responsive mx-3" id="authorsTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -195,7 +195,7 @@
             <div class="tab-pane fade" id="Categories">
                 <div class="list-group">
                     <div class="row">
-                        <table class="table table-striped mx-3" id="categoriesTable">
+                        <table class="table table-responsive mx-3" id="categoriesTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -212,7 +212,7 @@
             <div class="tab-pane fade" id="Orders">
                 <div class="list-group">
                     <div class="row">
-                        <table class="table table-striped mx-3" id="ordersTable">
+                        <table class="table table-responsive mx-3" id="ordersTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -239,7 +239,7 @@
 
                                 <div class="form-group">
                                     <label>Date</label>
-                                    <input type="text" class="form-control" id="bookDate">
+                                    <input type="date" class="form-control" id="bookDate">
                                 </div>
 
                                 <div class="form-group">
@@ -459,15 +459,13 @@
             getUsers();
             getAuthors();
             getCategories();
+            getBooks();
             let token = window.localStorage.getItem('auth_token');
             if (token) {
                 $('#showLoginDropdown').hide();
                 $('#logOutButton').show();
                 $('#ordersLink').show();
-            } else {
-                $('#ordersLink').hide();
-                $('#logOutButton').hide();
-            }
+           
             $.ajaxSetup({
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -512,6 +510,14 @@
                 deleteCategory(categoryId);
             });
 
+            $(document).on('click', '#booksTable tbody button', function (e) {
+                console.log(e.target.id);
+                let elementId = e.target.id;
+                let bookId = elementId.split('-')[1];
+                console.log(bookId);
+                deleteBook(bookId);
+            });
+
             $(document).on('change', '#authorsTable tbody input', function (e) {
                 let elementId = e.target.id;
                 let authorId = elementId.split('-')[1];
@@ -534,13 +540,22 @@
                 createCategory();
             });
 
+            $('#AddBook').submit(function (e) {
+                e.preventDefault();
+                createBook();
+            });
+
             $(document).on('change', '#authorsTable tbody input', function (e) {
                 let elementId = e.target.id;
                 let authorId = elementId.split('-')[1];
                 console.log(authorId);
                 uploadImage(authorId);
             });
-
+        } else {
+                $('#ordersLink').hide();
+                $('#logOutButton').hide();
+                window.location.href = 'index.html';
+            }
         });
 
         function createAuthor() {
@@ -627,6 +642,53 @@
                         $('#usersTable tbody').empty();
                         getUsers();
                         $('#addUserForm')[0].reset();
+                    }
+                }
+            })
+        }
+
+        function createBook() {
+            let name = $('#bookName').val();
+            let date = $('#bookDate').val();
+            let image = $('#bookImage').val();
+            let language = $('#bookLanguage').val();
+            let price = $('#bookPrice').val();
+            let quantity = $('#bookQuantity').val();
+            let short_info = $('#bookInfo').val();
+            let author = $('#bookAuthorId').val();
+            let category = $('#bookCategoryId').val();
+            // let formData = new FormData();
+            // formData.append('file', $('#image-' + authorId)[0].files[0]);
+            console.log(name + " " + date + " " + image + " " +
+            language + " " + price + " " + quantity + " " + short_info 
+            + " " + author + " " + category);
+            let book = {
+                name: name,
+                date: date,
+                image: image,
+                language: language,
+                price: price,
+                quantity: quantity,
+                short_info: short_info,
+                author: {
+                   id: author
+                },
+                category:{
+                    id: category
+                } 
+            };
+
+            $.ajax({
+                url: serverURL + 'book/',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(book),
+                complete: function (response) {
+                    if (response.status == 201) {
+                        $('#booksTable tbody').empty();
+                        getBooks();
+                        $('#addBookForm')[0].reset();
                     }
                 }
             })
@@ -781,6 +843,39 @@
             })
         }
 
+        function getBooks() {
+            $.ajax({
+                url: serverURL + 'book/',
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response);
+                    $.each(response, function (key, value) {
+                        $('#booksTable tbody').append(
+                            `
+                            <tr>                            
+                                <td>${value.id}</td>
+                                <td>${value.name}</td>
+                                <td>${value.author.name}</td>
+                                <td>${value.category.category}</td>
+                                <td>${value.date}</td>
+                                <td>${value.language}</td>
+                                <td>${value.price}</td>
+                                <td>${value.quantity}</td>
+                                <td>${value.short_info}</td>
+                                <td>${value.image}</td>
+                                <td>
+                                    <button id="book-${value.id}" class="btn btn-danger">Delete</button>    
+                                </td>
+                            </tr>
+                            `
+                        );
+                    });
+                }
+            })
+        }
+
         function deleteAuthor(authorId) {
             $.ajax({
                 url: serverURL + 'author/' + authorId,
@@ -813,6 +908,18 @@
                     console.log(response);
                     $('#categoriesTable tbody').empty();
                     getCategories();
+                }
+            });
+        }
+
+        function deleteBook(bookId) {
+            $.ajax({
+                url: serverURL + 'book/' + bookId,
+                method: 'DELETE',
+                success: function (response) {
+                    console.log(response);
+                    $('#booksTablr tbody').empty();
+                    getBooks();
                 }
             });
         }

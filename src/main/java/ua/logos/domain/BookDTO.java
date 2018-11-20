@@ -34,8 +34,5 @@ public class BookDTO {
 
     private String language;
 
-    @NotNull(message = "Field 'Link' can't be NULL")
-    private String link;
-
 
 }
