@@ -8,11 +8,11 @@ public interface OrderService {
 
     void saveOrder(OrderDTO orderDTO);
 
-    OrderDTO changeBookId(Long id);
-
-    OrderDTO changeOrderToken(Long id);
-
-    OrderDTO changeUserId(Long id);
+//    OrderDTO changeBookId(Long id);
+//
+//    OrderDTO changeOrderToken(Long id);
+//
+//    OrderDTO changeUserId(Long id);
 
     OrderDTO findOrderById(Long id);
 

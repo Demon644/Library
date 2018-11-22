@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.logos.domain.OrderDTO;
 import ua.logos.entity.OrderEntity;
+import ua.logos.entity.UserEntity;
 import ua.logos.exception.ResourceNotFoundException;
 import ua.logos.repository.OrderRepository;
+import ua.logos.repository.UserRepository;
 import ua.logos.service.OrderService;
 import ua.logos.utils.ObjectMapperUtils;
 
@@ -18,29 +20,35 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ObjectMapperUtils orderMapper;
 
 
     @Override
     public void saveOrder(OrderDTO orderDTO) {
+        UserEntity user = userRepository.findByLogin(orderDTO.getUser().getLogin()).get();
+
         OrderEntity entity = orderMapper.map(orderDTO, OrderEntity.class);
+        entity.setUsers(user);
         orderRepository.save(entity);
     }
 
-    @Override
-    public OrderDTO changeBookId(Long id) {
-        return null;
-    }
-
-    @Override
-    public OrderDTO changeOrderToken(Long id) {
-        return null;
-    }
-
-    @Override
-    public OrderDTO changeUserId(Long id) {
-        return null;
-    }
+//    @Override
+//    public OrderDTO changeBookId(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public OrderDTO changeOrderToken(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public OrderDTO changeUserId(Long id) {
+//        return null;
+//    }
 
     @Override
     public List<OrderDTO> findAllOrders() {

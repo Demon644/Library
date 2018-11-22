@@ -638,52 +638,53 @@
         }
 
         function signin() {
-            let user = {
-                login: $('#loginInput').val(),
-                password: $('#passwordInput').val()
-            }
-            console.log(user);
+      let user = {
+        login: $('#loginInput').val(),
+        password: $('#passwordInput').val()
+      }
+      console.log(user);
 
-            $.ajax({
-                url: serverURL + 'auth/signin', // http://localhost:8080
-                method: 'POST',
-                data: JSON.stringify(user),
-                contentType: 'application/json',
-                complete: function (data) {
-                    if (data.status == 200) {
-                        console.log(data);
-                        window.localStorage.setItem('auth_token', data.responseJSON.token);
-                        $(location).attr('href', 'index.html')
-                    }
-                }
-            })
-
+      $.ajax({
+        url: serverURL + 'auth/signin', // http://localhost:8080
+        method: 'POST',
+        data: JSON.stringify(user),
+        contentType: 'application/json',
+        complete: function (data) {
+          if (data.status == 200) {
+            console.log(data);
+            window.localStorage.setItem('auth_token', data.responseJSON.token);
+            $(location).attr('href', 'index.html')
+          }
         }
+      })
 
-        function signup() {
-            if ($('#passwordInputReg').val() == $('#passwordInputAgain').val()) {
-                let reguser = {
-                    login: $('#loginInputReg').val(),
-                    password: $('#passwordInputReg').val()
-                }
-                console.log(reguser);
+    }
 
-                $.ajax({
-                    url: serverURL + 'auth/signup',
-                    method: 'POST',
-                    data: JSON.stringify(reguser),
-                    contentType: 'application/json',
-                    complete: function (data) {
-                        if (data.status == 201) {
-                            alert('User created');
-                        }
-                    }
-                })
-
-            } else {
-                alert('Wrong password')
-            }
+    function signup() {
+      if ($('#passwordInputReg').val() == $('#passwordInputAgain').val()) {
+        let reguser = {
+          login: $('#loginInputReg').val(),
+          password: $('#passwordInputReg').val()
         }
+        console.log(reguser);
+
+        $.ajax({
+          url: serverURL + 'auth/signup',
+          method: 'POST',
+          data: JSON.stringify(reguser),
+          contentType: 'application/json',
+          complete: function (data) {
+            if (data.status == 201) {
+              alert('User created');
+              $(location).attr('href', 'index.html')
+            }
+          }
+        })
+
+      } else {
+        alert('Wrong password')
+      }
+    }
 
         function getAuthors() {
             $.ajax({
@@ -796,6 +797,8 @@
                                     <button id="book-${value.id}" class="btn btn-danger">Delete</button>    
                                 </td>
                             </tr>
+
+                            
                             `
                         );
                     });

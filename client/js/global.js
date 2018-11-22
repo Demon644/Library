@@ -1,8 +1,17 @@
 let serverURL = 'http://localhost:8080/';
+let globalBookId = 0;
+let userLoginParsed = '';
+
 function logout() {
     window.localStorage.removeItem('auth_token');
     location.reload();
   }
+
+  function getLoginFromJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64)).sub;
+};
 
 function loadBook() {
     $.ajax({
@@ -28,10 +37,11 @@ function loadBook() {
                                     <h5>${value.author.name}</h5>
                                     <h5>${value.category.category}</h5>
                                     <p class="card-text">${value.short_info}</p>
-                                    <a href="#" class="btn btn-primary">Buy for ${value.price} $</a>
+                                    <a id="book-${value.id}" href="#" class="btn btn-primary" data-toggle="modal" data-target="#orderInfo">Buy for ${value.price} $</a>
                                 </div>
                             </div>
                         </div>
+                        
                         `
                         )
                 });

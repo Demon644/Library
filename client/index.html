@@ -90,9 +90,46 @@
     </div>
   </div>
 
+  <div id="orderInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Order info</h3>
+          <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
+          <form class="form" role="form" id="orderForm">
+            <div class="form-group">
+              <input id="firstNameInput" placeholder="First name" class="form-control form-control-sm" type="text"
+                required="">
+            </div>
+            <div class="form-group">
+              <input id="lastNameInput" placeholder="Last name" class="form-control form-control-sm" type="text"
+                required="">
+            </div>
+            <div class="form-group">
+              <input id="phoneNumberInput" placeholder="Phone number" class="form-control form-control-sm" type="tel"
+                required="">
+            </div>
+            <div class="form-group">
+              <input id="deliverPlaceInput" placeholder="Delivery address" class="form-control form-control-sm" type="text"
+                required="">
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button type="submit" class="btn btn-primary">Confirm purchase</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="container-fluid mt-3">
     <div style="margin-top: 60px;" id="books">
       <div class="card-deck">
+
       </div>
     </div>
   </div>
@@ -120,6 +157,7 @@
       loadBook();
       let token = window.localStorage.getItem('auth_token');
       if (token) {
+        userLoginParsed = getLoginFromJwt(token);
         $('#showLoginDropdown').attr("hidden", "true");
         $('#logOutButton').attr("display", "block");
         $('#ordersLink').attr("display", "block");
@@ -147,6 +185,17 @@
         logout();
       })
 
+      $('#orderForm button').on('click', function (e) {
+        e.preventDefault();
+        createOrder();
+      })
+
+      $(document).on('click', '#books > .card-deck a', function (e) {
+        let elementId = e.target.id;
+        let bookId = elementId.split('-')[1];
+        console.log(bookId);
+        globalBookId = bookId;
+      });
     });
 
     function signin() {
@@ -196,6 +245,35 @@
       } else {
         alert('Wrong password')
       }
+    }
+
+    function createOrder() {
+      let order = {
+        book: {
+          id: globalBookId
+        },
+        user: {
+          login: userLoginParsed
+        },
+        firstName: $('#firstNameInput').val(),
+        lastName: $('#lastNameInput').val(),
+        phoneNumber: $('#phoneNumberInput').val(),
+        deliveryAddress: $('#deliverPlaceInput').val()
+      }
+      console.log(order);
+
+      $.ajax({
+        url: serverURL + "order/",
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(order),
+        complete: function (data) {
+          if (data.status == 201) {
+            alert('Order created');
+            //$(location).attr('href', 'index.html')
+          }
+        }
+      })
     }
   </script>
 

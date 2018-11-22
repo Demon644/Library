@@ -13,9 +13,16 @@ public class OrderDTO {
     @NotNull(message = "Field 'BookId' can't be NULL")
     private BookDTO book;
 
-    @NotNull(message = "Field 'BookId' can't be NULL")
     private UserEntity user;
 
-    @NotNull(message = "Field 'Order_Token' can't be NULL")
-    private String orderToken;
+    private String firstName;
+
+    private String lastName;
+
+    private String phoneNumber;
+
+    private String deliveryAddress;
+
+//    @NotNull(message = "Field 'Order_Token' can't be NULL")
+//    private String orderToken;
 }
