@@ -3,6 +3,7 @@ package ua.logos.service;
 import ua.logos.domain.OrderDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderService {
 
@@ -20,4 +21,7 @@ public interface OrderService {
 
     void deleteOrderById(Long id);
 
+    List<OrderDTO> findOrderByPhoneNumber(String number);
+
+    List<OrderDTO> findOrderByLogin(String login);
 }

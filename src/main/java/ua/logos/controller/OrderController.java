@@ -43,16 +43,28 @@ public class OrderController {
         return new ResponseEntity<List<OrderDTO>>(dtos, HttpStatus.OK);
     }
 
-    @GetMapping("{categoryId}")
-    public ResponseEntity<?> getById(@PathVariable("categoryId") Long id) {
+    @GetMapping("{orderId}")
+    public ResponseEntity<?> getById(@PathVariable("orderId") Long id) {
         OrderDTO dto = orderService.findOrderById(id);
         return new ResponseEntity<OrderDTO> (dto, HttpStatus.OK);
     }
 
-    @DeleteMapping("{categoryId}")
-    public ResponseEntity<?> delete(@PathVariable("categoryId") Long id) {
+    @DeleteMapping("{orderId}")
+    public ResponseEntity<?> delete(@PathVariable("orderId") Long id) {
         orderService.deleteOrderById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/by_number/{number}")
+    public ResponseEntity<?> getByPhoneNumber(@PathVariable("number") String phoneNumber) {
+        List<OrderDTO> byNumberDtos = orderService.findOrderByPhoneNumber(phoneNumber);
+        return new ResponseEntity<List<OrderDTO>>(byNumberDtos,HttpStatus.OK);
+    }
+
+    @GetMapping("/by_login/{login}")
+    public ResponseEntity<?> getByLogin(@PathVariable("login") String login) {
+        List<OrderDTO> dtos = orderService.findOrderByLogin(login);
+        return new ResponseEntity<List<OrderDTO>>(dtos,HttpStatus.OK);
     }
 
 }

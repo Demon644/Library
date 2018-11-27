@@ -21,52 +21,53 @@ public class FileStorageServiceImpl implements FileStorageService {
 
 	private final String PATH = System.getProperty("user.dir");
 	private final String SEPARATOR = System.getProperty("file.separator");
-	
+
 	private final Path fileStorageLocation;
-	
+
 	public FileStorageServiceImpl() {
 		String uploadDir = PATH + SEPARATOR + "uploads";
-		
+		System.out.println(uploadDir);
+
 		this.fileStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
-		
+
 		try {
 			Files.createDirectories(this.fileStorageLocation);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override
 	public String storeFile(MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
 		Path targetLocation = null;
-		
+
 		try {
 			targetLocation = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 		} catch (Exception e) {
-			throw new FileStorageException("Could not save file [" + fileName + "]. Please try again ...");
+			e.printStackTrace();
 		}
-		
+
 		return fileName;
 	}
 
 	@Override
 	public Resource loadFile(String fileName) {
 		try {
-			
 			Path filePath = this.fileStorageLocation.resolve(fileName);
 			Resource resource = new UrlResource(filePath.toUri());
-			
-			if (resource.exists()) {
-				return resource;
-			} else {
-				throw new ResourceNotFoundException("File not found with name [" + fileName + "]");
-			}
-			
-		} catch (MalformedURLException e) {
-			throw new ResourceNotFoundException("File not found");
-		}
-	}
 
+			if (resource.exists()) {
+				System.out.println("File exists");
+				return resource;
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }

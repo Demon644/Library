@@ -69,9 +69,9 @@ public class BookController {
         return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("image/{fileName}")
-    public ResponseEntity<Resource> getFile(
-            @PathVariable("fileName") String fileName,
+    @GetMapping(path = "image")//, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<?> getFile(
+            @RequestParam("file") String fileName,
             HttpServletRequest request) {
 
         Resource resource = fileStorageService.loadFile(fileName);

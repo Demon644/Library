@@ -12,6 +12,7 @@ import ua.logos.service.OrderService;
 import ua.logos.utils.ObjectMapperUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -74,5 +75,19 @@ public class OrderServiceImpl implements OrderService {
         if(entity != null) {
             orderRepository.deleteById(id);
         }
+    }
+
+    @Override
+    public List<OrderDTO> findOrderByPhoneNumber(String number) {
+        List<OrderEntity> entities = orderRepository.findByPhoneNumber(number);
+        List<OrderDTO> dtos = orderMapper.mapAll(entities, OrderDTO.class);
+        return dtos;
+    }
+
+    @Override
+    public List<OrderDTO> findOrderByLogin(String login) {
+        List<OrderEntity> entities = orderRepository.findAllByUsersLogin(login);
+        List<OrderDTO> dtos = orderMapper.mapAll(entities, OrderDTO.class);
+        return dtos;
     }
 }

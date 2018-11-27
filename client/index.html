@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="exCollapsingNavbar">
         <ul class="nav navbar-nav">
           <li class="nav-item"><a href="/index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" id="ordersLink">Orders</a></li>
+          <li class="nav-item"><a href="/orders.html" class="nav-link" id="ordersLink">Orders</a></li>
           <li class="nav-item"><a href="/about.html" class="nav-link">About</a></li>
         </ul>
         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
@@ -160,9 +160,7 @@
         userLoginParsed = getLoginFromJwt(token);
         $('#showLoginDropdown').attr("hidden", "true");
         $('#logOutButton').attr("display", "block");
-        $('#ordersLink').attr("display", "block");
       } else {
-        $('#ordersLink').attr("hidden", "false");
         $('#logOutButton').attr("hidden", "false");
       }
       // $.ajaxSetup({
@@ -270,6 +268,7 @@
         complete: function (data) {
           if (data.status == 201) {
             alert('Order created');
+            $(location).attr('href', 'index.html');
             //$(location).attr('href', 'index.html')
           }
         }

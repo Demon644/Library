@@ -31,7 +31,7 @@ function loadBook() {
                         `
                         <div class="col-sm-6 col-md-3">
                             <div class="card mb-4" style="width: 28rem;">
-                                <img class="card-img-top" src="14.jpg" alt="Card image cap">
+                                <img class="card-img-top" src="${serverURL}book/image?file=${value.image}" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">${value.name}</h4>
                                     <h5>${value.author.name}</h5>

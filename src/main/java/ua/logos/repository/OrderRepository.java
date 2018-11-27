@@ -12,7 +12,9 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
     boolean existsByPhoneNumber(String phoneNumber);
 
-    Optional<OrderEntity> findByPhoneNumber(String phoneNumber);
+    List<OrderEntity> findByPhoneNumber(String phoneNumber);
 
     List<OrderEntity> findByUsersId(Long id);
+
+    List<OrderEntity> findAllByUsersLogin(String login);
 }
