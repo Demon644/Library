@@ -31,38 +31,38 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	}
 
 
-	@Override
-	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-		configurer.favorPathExtension(false).
-				favorParameter(true).
-				parameterName("mediaType").
-				ignoreAcceptHeader(true).
-				//useJaf(false).
-				defaultContentType(MediaType.APPLICATION_JSON).
-				//mediaType("xml", MediaType.APPLICATION_XML).
-				mediaType("json", MediaType.APPLICATION_JSON);
-	}
-
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(jackson2HttpMessageConverter());
-	}
-
-	@Bean
-	public MappingJackson2HttpMessageConverter jackson2HttpMessageConverter() {
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		converter.setObjectMapper(this.jacksonBuilder().build());
-		return converter;
-	}
-
-	public Jackson2ObjectMapperBuilder jacksonBuilder() {
-		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-
-		Hibernate5Module hibernateModule = new Hibernate5Module();
-		hibernateModule.configure(Feature.FORCE_LAZY_LOADING, false);
-		builder.modules(hibernateModule);
-		builder.featuresToDisable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		builder.featuresToDisable(MapperFeature.DEFAULT_VIEW_INCLUSION);
-		return builder;
-	}
+//	@Override
+//	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//		configurer.favorPathExtension(false).
+//				favorParameter(true).
+//				parameterName("mediaType").
+//				ignoreAcceptHeader(true).
+//				//useJaf(false).
+//				defaultContentType(MediaType.APPLICATION_JSON).
+//				//mediaType("xml", MediaType.APPLICATION_XML).
+//				mediaType("json", MediaType.APPLICATION_JSON);
+//	}
+//
+//	@Override
+//	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//		converters.add(jackson2HttpMessageConverter());
+//	}
+//
+//	@Bean
+//	public MappingJackson2HttpMessageConverter jackson2HttpMessageConverter() {
+//		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+//		converter.setObjectMapper(this.jacksonBuilder().build());
+//		return converter;
+//	}
+//
+//	public Jackson2ObjectMapperBuilder jacksonBuilder() {
+//		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+//
+//		Hibernate5Module hibernateModule = new Hibernate5Module();
+//		hibernateModule.configure(Feature.FORCE_LAZY_LOADING, false);
+//		builder.modules(hibernateModule);
+//		builder.featuresToDisable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+//		builder.featuresToDisable(MapperFeature.DEFAULT_VIEW_INCLUSION);
+//		return builder;
+//	}
 }

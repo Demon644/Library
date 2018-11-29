@@ -37,7 +37,7 @@ public class BookEntity extends BaseEntity{
     @Column (nullable = false)
     private double price;
 
-    @Column
+    @Column (length = 255)
     private String short_info;
 
     @Column

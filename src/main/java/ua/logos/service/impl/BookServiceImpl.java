@@ -63,9 +63,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDTO deleteBook(Long id) {
-        return null;
+    public void deleteBook(Long id) {
+        BookEntity entity = bookRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Record with id [" + id + "] not found")
+        );
+        if(entity != null) {
+            bookRepository.deleteById(id);
+        }
     }
+    
 
     @Override
     public BookDTO changeAuthor(Long id) {

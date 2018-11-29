@@ -94,4 +94,10 @@ public class BookController {
                 .body(resource);
     }
 
+    @DeleteMapping("{bookId}")
+    public ResponseEntity<?> delete(@PathVariable("bookId") Long id) {
+        bookService.deleteBookById(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    
 }

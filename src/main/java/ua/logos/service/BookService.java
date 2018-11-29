@@ -2,7 +2,6 @@ package ua.logos.service;
 
 import ua.logos.domain.BookDTO;
 
-import java.awt.print.Book;
 import java.util.List;
 
 public interface BookService {
@@ -15,7 +14,7 @@ public interface BookService {
 
     BookDTO findBookByAuthor(String name);
 
-    BookDTO deleteBook(Long id);
+    void deleteBook(Long id);
 
     BookDTO changeAuthor(Long id);
 
