@@ -45,15 +45,15 @@ public class CategoryServiceImpl implements CategoryService {
         return dtos;
     }
 
-    @Override
-    public CategoryDTO changeName(Long id) {
-        return null;
-    }
-
-    @Override
-    public CategoryDTO changeShortInfo(Long id) {
-        return null;
-    }
+//    @Override
+//    public CategoryDTO changeName(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public CategoryDTO changeShortInfo(Long id) {
+//        return null;
+//    }
 
     @Override
     public void deleteCategoryById(Long id) {

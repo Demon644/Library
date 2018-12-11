@@ -3,6 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Admin</title>
     <link rel="stylesheet" href="/css/bootstrap4.min.css">
     <!-- <link rel="stylesheet" href="/css/fontawesome.min.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
@@ -22,7 +23,6 @@
                 <ul class="nav navbar-nav">
                     <li class="nav-item"><a href="/index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="/orders.html" class="nav-link" id="ordersLink">Orders</a></li>
-                    <li class="nav-item"><a href="/about.html" class="nav-link">About</a></li>
                 </ul>
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item order-2 order-md-1" id="logOutButton">
@@ -90,268 +90,260 @@
         </div>
     </div>
 
-    <div class="card p-3 bg-transparent" style="margin-top: 60px;border: none;">
-        <div class="card-header text-center text-uppercase bg-transparent" style="border : none;">
-            <h6>Admin panel</h6>
+    <div style="margin: 35px;border-radius:15px;background-color: hsl(195, 100%, 60%,0.4);">
+        <div class="card p-3 bg-transparent" style="margin-top: 60px;border: none;">
+            <div class="card-header text-center text-uppercase bg-transparent" style="border : none;">
+                <h6>Admin panel</h6>
+            </div>
+            <div class="card-block" style="border : none;">
+                <ul id="tabsJustified" class="nav nav-tabs justify-content-center" style="border : none;">
+                    <li class="nav-item">
+                        <a href="" data-target="#Books" data-toggle="tab" class="nav-link small text-uppercase active">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#Users" data-toggle="tab" class="nav-link small text-uppercase">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#Authors" data-toggle="tab" class="nav-link small text-uppercase">Authors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#Categories" data-toggle="tab" class="nav-link small text-uppercase">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#Orders" data-toggle="tab" class="nav-link small text-uppercase">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#AddBook" data-toggle="tab" class="nav-link small text-uppercase">Add
+                            book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#AddAuthor" data-toggle="tab" class="nav-link small text-uppercase">Add
+                            author</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#AddCategory" data-toggle="tab" class="nav-link small text-uppercase">Add
+                            category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#AddUser" data-toggle="tab" class="nav-link small text-uppercase">Add
+                            user</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/tabs-->
+            <div id="tabsJustifiedContent" class="tab-content d-flex justify-content-center">
+                <div class="tab-pane fade active show" id="Books">
+                    <div class="list-group">
+                        <div class="row">
+                            <table class="table table-responsive mx-3 table-hover mt-2" id="booksTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Language</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Short info</th>
+                                        <th>Image</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Users">
+                    <div class="list-group">
+                        <div class="row">
+                            <table class="table table-responsive mx-3 table-hover mt-2" id="usersTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Login</th>
+                                        <th>Password</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Authors">
+                    <div class="list-group">
+                        <div class="row">
+                            <table class="table table-responsive mx-3 table-hover mt-2" id="authorsTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Life</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Categories">
+                    <div class="list-group">
+                        <div class="row">
+                            <table class="table table-responsive mx-3 table-hover mt-2" id="categoriesTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Category</th>
+                                        <th>Short info</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Orders">
+                    <div class="list-group">
+                        <div class="row">
+                            <table class="table table-responsive mx-3 table-hover mt-2" id="ordersTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Book</th>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Phone number</th>
+                                        <th>Delivery address</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="AddBook">
+                    <div class="list-group">
+                        <div class="row">
+                            <div class="container mt-2">
+                                <form id="addBookForm">
+                                    <div class="form-group">
+                                        <label>Name (not null)</label>
+                                        <input type="text" class="form-control" id="bookName">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date" class="form-control" id="bookDate">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Image (not null)</label>
+                                        <input type="text" class="form-control" id="bookImage">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Language</label>
+                                        <input type="text" class="form-control" id="bookLanguage">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Price (not null)</label>
+                                        <input type="number" class="form-control" id="bookPrice">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantity (not null)</label>
+                                        <input type="number" class="form-control" id="bookQuantity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Short info</label>
+                                        <input type="text" class="form-control" id="bookInfo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Author ID</label>
+                                        <input type="" class="form-control" id="bookAuthorId">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Category ID (not null)</label>
+                                        <input type="" class="form-control" id="bookCategoryId">
+                                    </div>
+                                    <button class="btn btn-primary btn-block mb-3" id="addBookButton">Add book</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="AddAuthor">
+                    <div class="list-group">
+                        <div class="row">
+                            <div class="container mt-2">
+                                <form id="addAuthorForm">
+                                    <div class="form-group">
+                                        <label>Name (not null)</label>
+                                        <input type="text" class="form-control" id="authorName">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Life</label>
+                                        <input type="date" class="form-control" id="authorLife">
+                                    </div>
+
+                                    <button class="btn btn-primary btn-block mb-3" id="addAuthorButton">Add author</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="AddCategory">
+                    <div class="list-group">
+                        <div class="row">
+                            <div class="container mt-2">
+                                <form id="addCategoryForm">
+                                    <div class="form-group">
+                                        <label>Name (not null)</label>
+                                        <input type="text" class="form-control" id="categoryName">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Short info</label>
+                                        <input type="text" class="form-control" id="shortInfoCategory">
+                                    </div>
+
+                                    <button class="btn btn-primary btn-block mb-3" id="addCategoryButton">Add category</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="AddUser">
+                    <div class="list-group">
+                        <div class="row">
+                            <div class="container mt-2">
+                                <form id="addUserForm">
+                                    <div class="form-group">
+                                        <label>Login (not null)</label>
+                                        <input type="text" class="form-control" id="loginUser">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="text" class="form-control" id="passwordUser">
+                                    </div>
+
+                                    <button class="btn btn-primary btn-block mb-3" id="addUserButton">Add user</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/tabs content-->
         </div>
-        <div class="card-block" style="border : none;">
-            <ul id="tabsJustified" class="nav nav-tabs justify-content-center" style="border : none;">
-                <li class="nav-item">
-                    <a href="" data-target="#Books" data-toggle="tab" class="nav-link small text-uppercase active">Books</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#Users" data-toggle="tab" class="nav-link small text-uppercase">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#Authors" data-toggle="tab" class="nav-link small text-uppercase">Authors</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#Categories" data-toggle="tab" class="nav-link small text-uppercase">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#Orders" data-toggle="tab" class="nav-link small text-uppercase">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#AddBook" data-toggle="tab" class="nav-link small text-uppercase">Add
-                        book</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#AddAuthor" data-toggle="tab" class="nav-link small text-uppercase">Add
-                        author</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#AddCategory" data-toggle="tab" class="nav-link small text-uppercase">Add
-                        category</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#AddUser" data-toggle="tab" class="nav-link small text-uppercase">Add
-                        user</a>
-                </li>
-            </ul>
-        </div>
-        <!--/tabs-->
-        <div id="tabsJustifiedContent" class="tab-content d-flex justify-content-center">
-            <div class="tab-pane fade active show" id="Books">
-                <div class="list-group">
-                    <div class="row">
-                        <table class="table table-responsive mx-3" id="booksTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Author</th>
-                                    <th>Category</th>
-                                    <th>Date</th>
-                                    <th>Language</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Short info</th>
-                                    <th>Image</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="Users">
-                <div class="list-group">
-                    <div class="row">
-                        <table class="table table-responsive mx-3" id="usersTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Login</th>
-                                    <th>Password</th>
-                                    <th>Image</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="Authors">
-                <div class="list-group">
-                    <div class="row">
-                        <table class="table table-responsive mx-3" id="authorsTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Life</th>
-                                    <th>Image</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="Categories">
-                <div class="list-group">
-                    <div class="row">
-                        <table class="table table-responsive mx-3" id="categoriesTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Category</th>
-                                    <th>Short info</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="Orders">
-                <div class="list-group">
-                    <div class="row">
-                        <table class="table table-responsive mx-3" id="ordersTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Book</th>
-                                    <th>User</th>
-                                    <th>Order token</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="AddBook">
-                <div class="list-group">
-                    <div class="row">
-                        <div class="container mt-2">
-                            <form id="addBookForm">
-                                <div class="form-group">
-                                    <label>Name (not null)</label>
-                                    <input type="text" class="form-control" id="bookName">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Date</label>
-                                    <input type="date" class="form-control" id="bookDate">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Image (not null)</label>
-                                    <input type="text" class="form-control" id="bookImage">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Language</label>
-                                    <input type="text" class="form-control" id="bookLanguage">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Price (not null)</label>
-                                    <input type="number" class="form-control" id="bookPrice">
-                                </div>
-                                <div class="form-group">
-                                    <label>Quantity (not null)</label>
-                                    <input type="number" class="form-control" id="bookQuantity">
-                                </div>
-                                <div class="form-group">
-                                    <label>Short info</label>
-                                    <input type="text" class="form-control" id="bookInfo">
-                                </div>
-                                <div class="form-group">
-                                    <label>Author ID</label>
-                                    <input type="" class="form-control" id="bookAuthorId">
-                                </div>
-                                <div class="form-group">
-                                    <label>Category ID (not null)</label>
-                                    <input type="" class="form-control" id="bookCategoryId">
-                                </div>
-                                <button class="btn btn-primary btn-block mb-3" id="addBookButton">Add book</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="AddAuthor">
-                <div class="list-group">
-                    <div class="row">
-                        <div class="container mt-2">
-                            <form id="addAuthorForm">
-                                <div class="form-group">
-                                    <label>Name (not null)</label>
-                                    <input type="text" class="form-control" id="authorName">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Life</label>
-                                    <input type="date" class="form-control" id="authorLife">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Image (not null)</label>
-                                    <input type="text" class="form-control" id="authorImage">
-                                </div>
-
-                                <button class="btn btn-primary btn-block mb-3" id="addAuthorButton">Add author</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="AddCategory">
-                <div class="list-group">
-                    <div class="row">
-                        <div class="container mt-2">
-                            <form id="addCategoryForm">
-                                <div class="form-group">
-                                    <label>Name (not null)</label>
-                                    <input type="text" class="form-control" id="categoryName">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Short info</label>
-                                    <input type="text" class="form-control" id="shortInfoCategory">
-                                </div>
-
-                                <button class="btn btn-primary btn-block mb-3" id="addCategoryButton">Add category</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="AddUser">
-                <div class="list-group">
-                    <div class="row">
-                        <div class="container mt-2">
-                            <form id="addUserForm">
-                                <div class="form-group">
-                                    <label>Login (not null)</label>
-                                    <input type="text" class="form-control" id="loginUser">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="text" class="form-control" id="passwordUser">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input type="text" class="form-control" id="imageUser">
-                                </div>
-
-                                <button class="btn btn-primary btn-block mb-3" id="addUserButton">Add user</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/tabs content-->
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -376,98 +368,99 @@
             getAuthors();
             getCategories();
             getBooks();
+            getOrders();
             let token = window.localStorage.getItem('auth_token');
             if (token) {
                 $('#showLoginDropdown').hide();
                 $('#logOutButton').show();
                 $('#ordersLink').show();
-           
-            $.ajaxSetup({
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
-            })
 
-            $('#signInForm').submit(function (e) {
-                e.preventDefault();
-                signin();
-            });
+                $.ajaxSetup({
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                })
 
-            $('#signUpForm').submit(function (e) {
-                e.preventDefault();
-                signup();
-            });
+                $('#signInForm').submit(function (e) {
+                    e.preventDefault();
+                    signin();
+                });
 
-            $('#logOutButton').on('click', function (e) {
-                logout();
-            })
+                $('#signUpForm').submit(function (e) {
+                    e.preventDefault();
+                    signup();
+                });
 
-            $(document).on('click', '#authorsTable tbody button', function (e) {
-                console.log(e.target.id);
-                let elementId = e.target.id;
-                let authorId = elementId.split('-')[1];
-                console.log(authorId);
-                deleteAuthor(authorId);
-            });
+                $('#logOutButton').on('click', function (e) {
+                    logout();
+                })
 
-            $(document).on('click', '#usersTable tbody button', function (e) {
-                console.log(e.target.id);
-                let elementId = e.target.id;
-                let userId = elementId.split('-')[1];
-                console.log(userId);
-                deleteUser(userId);
-            });
+                $(document).on('click', '#authorsTable tbody button', function (e) {
+                    console.log(e.target.id);
+                    let elementId = e.target.id;
+                    let authorId = elementId.split('-')[1];
+                    console.log(authorId);
+                    deleteAuthor(authorId);
+                });
 
-            $(document).on('click', '#categoriesTable tbody button', function (e) {
-                console.log(e.target.id);
-                let elementId = e.target.id;
-                let categoryId = elementId.split('-')[1];
-                console.log(categoryId);
-                deleteCategory(categoryId);
-            });
+                $(document).on('click', '#usersTable tbody button', function (e) {
+                    console.log(e.target.id);
+                    let elementId = e.target.id;
+                    let userId = elementId.split('-')[1];
+                    console.log(userId);
+                    deleteUser(userId);
+                });
 
-            $(document).on('click', '#booksTable tbody button', function (e) {
-                console.log(e.target.id);
-                let elementId = e.target.id;
-                let bookId = elementId.split('-')[1];
-                console.log(bookId);
-                deleteBook(bookId);
-            });
+                $(document).on('click', '#categoriesTable tbody button', function (e) {
+                    console.log(e.target.id);
+                    let elementId = e.target.id;
+                    let categoryId = elementId.split('-')[1];
+                    console.log(categoryId);
+                    deleteCategory(categoryId);
+                });
 
-            $(document).on('change', '#authorsTable tbody input', function (e) {
-                let elementId = e.target.id;
-                let authorId = elementId.split('-')[1];
-                console.log(authorId);
-                uploadImage(authorId);
-            });
+                $(document).on('click', '#booksTable tbody button', function (e) {
+                    console.log(e.target.id);
+                    let elementId = e.target.id;
+                    let bookId = elementId.split('-')[1];
+                    console.log(bookId);
+                    deleteBook(bookId);
+                });
 
-            $('#AddAuthor').submit(function (e) {
-                e.preventDefault();
-                createAuthor();
-            });
+                $(document).on('change', '#authorsTable tbody input', function (e) {
+                    let elementId = e.target.id;
+                    let authorId = elementId.split('-')[1];
+                    console.log(authorId);
+                    uploadImage(authorId);
+                });
 
-            $('#AddUser').submit(function (e) {
-                e.preventDefault();
-                createUser();
-            });
+                $('#AddAuthor').submit(function (e) {
+                    e.preventDefault();
+                    createAuthor();
+                });
 
-            $('#AddCategory').submit(function (e) {
-                e.preventDefault();
-                createCategory();
-            });
+                $('#AddUser').submit(function (e) {
+                    e.preventDefault();
+                    createUser();
+                });
 
-            $('#AddBook').submit(function (e) {
-                e.preventDefault();
-                createBook();
-            });
+                $('#AddCategory').submit(function (e) {
+                    e.preventDefault();
+                    createCategory();
+                });
 
-            $(document).on('change', '#authorsTable tbody input', function (e) {
-                let elementId = e.target.id;
-                let authorId = elementId.split('-')[1];
-                console.log(authorId);
-                uploadImage(authorId);
-            });
-        } else {
+                $('#AddBook').submit(function (e) {
+                    e.preventDefault();
+                    createBook();
+                });
+
+                $(document).on('change', '#authorsTable tbody input', function (e) {
+                    let elementId = e.target.id;
+                    let authorId = elementId.split('-')[1];
+                    console.log(authorId);
+                    uploadImage(authorId);
+                });
+            } else {
                 $('#ordersLink').hide();
                 $('#logOutButton').hide();
                 window.location.href = 'index.html';
@@ -478,8 +471,6 @@
             let name = $('#authorName').val();
             let life = $('#authorLife').val();
             let image = $('#authorImage').val();
-            // let formData = new FormData();
-            // formData.append('file', $('#image-' + authorId)[0].files[0]);
             console.log(name + " " + life + " " +
                 image);
             let author = {
@@ -507,8 +498,6 @@
         function createCategory() {
             let name = $('#categoryName').val();
             let shortInfo = $('#shortInfoCategory').val();
-            // let formData = new FormData();
-            // formData.append('file', $('#image-' + authorId)[0].files[0]);
             console.log(name + " " + shortInfo);
             let category = {
                 category: name,
@@ -535,8 +524,6 @@
             let login = $('#loginUser').val();
             let password = $('#passwordUser').val();
             let image = $('#imageUser').val();
-            // let formData = new FormData();
-            // formData.append('file', $('#image-' + authorId)[0].files[0]);
             console.log(name + " " + password + " " + userType + " " +
                 image);
             let user = {
@@ -571,11 +558,9 @@
             let short_info = $('#bookInfo').val();
             let author = $('#bookAuthorId').val();
             let category = $('#bookCategoryId').val();
-            // let formData = new FormData();
-            // formData.append('file', $('#image-' + authorId)[0].files[0]);
             console.log(name + " " + date + " " + image + " " +
-            language + " " + price + " " + quantity + " " + short_info 
-            + " " + author + " " + category);
+                language + " " + price + " " + quantity + " " + short_info +
+                " " + author + " " + category);
             let book = {
                 name: name,
                 date: date,
@@ -585,11 +570,11 @@
                 quantity: quantity,
                 short_info: short_info,
                 author: {
-                   id: author
+                    id: author
                 },
-                category:{
+                category: {
                     id: category
-                } 
+                }
             };
 
             $.ajax({
@@ -625,53 +610,53 @@
         }
 
         function signin() {
-      let user = {
-        login: $('#loginInput').val(),
-        password: $('#passwordInput').val()
-      }
-      console.log(user);
-
-      $.ajax({
-        url: serverURL + 'auth/signin', // http://localhost:8080
-        method: 'POST',
-        data: JSON.stringify(user),
-        contentType: 'application/json',
-        complete: function (data) {
-          if (data.status == 200) {
-            console.log(data);
-            window.localStorage.setItem('auth_token', data.responseJSON.token);
-            $(location).attr('href', 'index.html')
-          }
-        }
-      })
-
-    }
-
-    function signup() {
-      if ($('#passwordInputReg').val() == $('#passwordInputAgain').val()) {
-        let reguser = {
-          login: $('#loginInputReg').val(),
-          password: $('#passwordInputReg').val()
-        }
-        console.log(reguser);
-
-        $.ajax({
-          url: serverURL + 'auth/signup',
-          method: 'POST',
-          data: JSON.stringify(reguser),
-          contentType: 'application/json',
-          complete: function (data) {
-            if (data.status == 201) {
-              alert('User created');
-              $(location).attr('href', 'index.html')
+            let user = {
+                login: $('#loginInput').val(),
+                password: $('#passwordInput').val()
             }
-          }
-        })
+            console.log(user);
 
-      } else {
-        alert('Wrong password')
-      }
-    }
+            $.ajax({
+                url: serverURL + 'auth/signin', // http://localhost:8080
+                method: 'POST',
+                data: JSON.stringify(user),
+                contentType: 'application/json',
+                complete: function (data) {
+                    if (data.status == 200) {
+                        console.log(data);
+                        window.localStorage.setItem('auth_token', data.responseJSON.token);
+                        $(location).attr('href', 'index.html')
+                    }
+                }
+            })
+
+        }
+
+        function signup() {
+            if ($('#passwordInputReg').val() == $('#passwordInputAgain').val()) {
+                let reguser = {
+                    login: $('#loginInputReg').val(),
+                    password: $('#passwordInputReg').val()
+                }
+                console.log(reguser);
+
+                $.ajax({
+                    url: serverURL + 'auth/signup',
+                    method: 'POST',
+                    data: JSON.stringify(reguser),
+                    contentType: 'application/json',
+                    complete: function (data) {
+                        if (data.status == 201) {
+                            alert('User created');
+                            $(location).attr('href', 'index.html')
+                        }
+                    }
+                })
+
+            } else {
+                alert('Wrong password')
+            }
+        }
 
         function getAuthors() {
             $.ajax({
@@ -688,9 +673,6 @@
                                 <td>${value.id}</td>
                                 <td>${value.name}</td>
                                 <td>${value.life}</td>
-                                <td>
-                                    <img src="http://localhost:8080/author/image/${value.image}" width="150px">
-                                </td>
                                 <td>
                                     <button id="author-${value.id}" class="btn btn-danger">Delete</button>    
                                 </td>
@@ -717,9 +699,6 @@
                                 <td>${value.id}</td>
                                 <td>${value.login}</td>
                                 <td>${value.password}</td>
-                                <td>
-                                    <img src="http://localhost:8080/users/image/${value.image}" width="150px">
-                                </td>
                                 <td>
                                     <button id="user-${value.id}" class="btn btn-danger">Delete</button>    
                                 </td>
@@ -778,13 +757,42 @@
                                 <td>${value.price}</td>
                                 <td>${value.quantity}</td>
                                 <td>${value.short_info}</td>
-                                <td>${value.image}</td>
+                                <td><img src="${serverURL}book/image?file=${value.image}" alt="No image" border=3 height=100 width=100></img></td>
                                 <td>
                                     <button id="book-${value.id}" class="btn btn-danger">Delete</button>    
                                 </td>
                             </tr>
 
                             
+                            `
+                        );
+                    });
+                }
+            })
+        }
+
+        function getOrders() {
+            $.ajax({
+                url: serverURL + 'order/',
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response);
+                    $.each(response, function (key, value) {
+                        $('#ordersTable tbody').append(
+                            `
+                            <tr>                            
+                                <td>${value.id}</td>
+                                <td>${value.book.name}</td>
+                                <td>${value.firstName}</td>
+                                <td>${value.lastName}</td>
+                                <td>${value.phoneNumber}</td>
+                                <td>${value.deliveryAddress}</td>
+                                <td>
+                                    <button id="category-${value.id}" class="btn btn-danger">Delete</button>    
+                                </td>
+                            </tr>
                             `
                         );
                     });

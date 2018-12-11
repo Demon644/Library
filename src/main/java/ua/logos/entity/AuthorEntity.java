@@ -22,7 +22,7 @@ public class AuthorEntity extends BaseEntity{
     @Column
     private String life;
 
-    @Column
-    private String image;
+//    @Column
+//    private String image;
 
 }

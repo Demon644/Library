@@ -34,43 +34,43 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Override
-    public UserDTO changeLogin(Long id) {
-        return null;
-    }
-
-    @Override
-    public UserDTO changePassword(Long id) {
-        return null;
-    }
-
-    @Override
-    public UserDTO changeUserType(Long id) {
-        return null;
-    }
-
-    @Override
-    public UserDTO changeUserToken(Long id) {
-        return null;
-    }
-
-    @Override
-    public UserDTO changeImage(Long id) {
-        return null;
-    }
-
-    @Override
-    public void addImageToUser(Long id, String fileName) {
-        UserEntity user = userRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Record with id[" + id + "] not found")
-        );
-        user.setImage(fileName);
-        userRepository.save(user);
-    }
-    @Override
-    public UserDTO changeUserById(Long id) {
-        return null;
-    }
+//    @Override
+//    public UserDTO changeLogin(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public UserDTO changePassword(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public UserDTO changeUserType(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public UserDTO changeUserToken(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public UserDTO changeImage(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public void addImageToUser(Long id, String fileName) {
+//        UserEntity user = userRepository.findById(id).orElseThrow(
+//                () -> new ResourceNotFoundException("Record with id[" + id + "] not found")
+//        );
+//        user.setImage(fileName);
+//        userRepository.save(user);
+//    }
+//    @Override
+//    public UserDTO changeUserById(Long id) {
+//        return null;
+//    }
 
     @Override
     public List<UserDTO> findAllUsers() {

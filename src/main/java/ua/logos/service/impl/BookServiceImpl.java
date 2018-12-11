@@ -62,51 +62,41 @@ public class BookServiceImpl implements BookService {
         return null;
     }
 
-    @Override
-    public void deleteBook(Long id) {
-        BookEntity entity = bookRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Record with id [" + id + "] not found")
-        );
-        if(entity != null) {
-            bookRepository.deleteById(id);
-        }
-    }
-    
 
-    @Override
-    public BookDTO changeAuthor(Long id) {
-        return null;
-    }
-
-    @Override
-    public BookDTO changeName(Long id) {
-        return null;
-    }
-
-    @Override
-    public BookDTO changeShortInfo(Long id) {
-        return null;
-    }
-
-    @Override
-    public BookDTO changeLanguage(Long id) {
-        return null;
-    }
-
-    @Override
-    public BookDTO changeDate(Long id) {
-        return null;
-    }
-
-    @Override
-    public BookDTO changeQuantity(Long id) {
-        return null;
-    }
-
-    @Override
-    public BookDTO changePrice(Long id) {
-        return null;
-    }
+//    @Override
+//    public BookDTO changeAuthor(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public BookDTO changeName(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public BookDTO changeShortInfo(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public BookDTO changeLanguage(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public BookDTO changeDate(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public BookDTO changeQuantity(Long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public BookDTO changePrice(Long id) {
+//        return null;
+//    }
 
     @Override
     public void deleteBookById(Long id) {

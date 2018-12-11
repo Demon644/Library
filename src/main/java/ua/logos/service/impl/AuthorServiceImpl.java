@@ -45,12 +45,6 @@ public class AuthorServiceImpl implements AuthorService {
         return dtos;
     }
 
-    @Override
-    public List<AuthorDTO> findAuthorsByPage(Pageable pageable) {
-        PageRequest request = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
-        List<AuthorEntity> models = authorRepository.findAll(request).getContent();
-        return authorMapper.mapAll(models, AuthorDTO.class);
-    }
 
     @Override
     public void deleteAuthorById(Long id) {
@@ -62,12 +56,12 @@ public class AuthorServiceImpl implements AuthorService {
         }
     }
 
-    @Override
-    public void addImageToAuthor(Long id, String fileName) {
-        AuthorEntity author = authorRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Record with id[" + id + "] not found")
-        );
-        author.setImage(fileName);
-        authorRepository.save(author);
-    }
+//    @Override
+//    public void addImageToAuthor(Long id, String fileName) {
+//        AuthorEntity author = authorRepository.findById(id).orElseThrow(
+//                () -> new ResourceNotFoundException("Record with id[" + id + "] not found")
+//        );
+//        author.setImage(fileName);
+//        authorRepository.save(author);
+//    }
 }

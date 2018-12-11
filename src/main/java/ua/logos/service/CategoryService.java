@@ -8,9 +8,9 @@ public interface CategoryService {
 
     void saveCategory (CategoryDTO dto);
 
-    CategoryDTO changeName(Long id);
+//    CategoryDTO changeName(Long id);
 
-    CategoryDTO changeShortInfo(Long id);
+//    CategoryDTO changeShortInfo(Long id);
 
     CategoryDTO findCategoryById(Long id);
 

@@ -16,6 +16,6 @@ public class UserDTO {
     @NotNull(message = "Field 'Password' can't be NULL")
     private String password;
 
-    private String image;
+//    private String image;
 
 }

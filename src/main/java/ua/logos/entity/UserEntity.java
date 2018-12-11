@@ -27,7 +27,7 @@ public class UserEntity extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roles;
 
-    @Column
-    private String image;
+//    @Column
+//    private String image;
 
 }

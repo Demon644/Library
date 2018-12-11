@@ -1,7 +1,12 @@
-package ua.logos.validation;
-
-//Make UserRepository
-
+//package ua.logos.validation;
+//
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import ua.logos.repository.UserRepository;
+//
+//import javax.validation.ConstraintValidator;
+//import javax.validation.ConstraintValidatorContext;
+//
 //public class CheckLoginExistsValidator implements ConstraintValidator<CheckLoginExists, String> {
 //
 //    @Autowired
@@ -15,5 +20,5 @@ package ua.logos.validation;
 //        return false;
 //    }
 //}
-
-
+//
+//

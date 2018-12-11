@@ -1,5 +1,5 @@
-package ua.logos.validation;
-
+//package ua.logos.validation;
+//
 //import javax.validation.Constraint;
 //import javax.validation.Payload;
 //import java.lang.annotation.ElementType;

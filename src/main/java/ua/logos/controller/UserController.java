@@ -33,40 +33,40 @@ public class UserController {
         return new ResponseEntity<List<UserDTO>>(dtos, HttpStatus.OK);
     }
 
-    @PostMapping("{userId}/image")
-    public ResponseEntity<Void> uploadImage(
-            @PathVariable("userId") Long id,
-            @RequestParam("file") MultipartFile file) {
-
-        System.out.println(file.getOriginalFilename());
-        String fileName = fileStorageService.storeFile(file);
-        userService.addImageToUser(id, fileName);
-        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("image/{fileName}")
-    public ResponseEntity<Resource> getFile(
-            @PathVariable("fileName") String fileName,
-            HttpServletRequest request) {
-
-        Resource resource = fileStorageService.loadFile(fileName);
-
-        String contentType = null;
-
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (contentType == null) {
-            contentType = "application/octet-stream";
-        }
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline: filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
-    }
+//    @PostMapping("{userId}/image")
+//    public ResponseEntity<Void> uploadImage(
+//            @PathVariable("userId") Long id,
+//            @RequestParam("file") MultipartFile file) {
+//
+//        System.out.println(file.getOriginalFilename());
+//        String fileName = fileStorageService.storeFile(file);
+//        userService.addImageToUser(id, fileName);
+//        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+//    }
+//
+//    @GetMapping("image/{fileName}")
+//    public ResponseEntity<Resource> getFile(
+//            @PathVariable("fileName") String fileName,
+//            HttpServletRequest request) {
+//
+//        Resource resource = fileStorageService.loadFile(fileName);
+//
+//        String contentType = null;
+//
+//        try {
+//            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        if (contentType == null) {
+//            contentType = "application/octet-stream";
+//        }
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType(contentType))
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline: filename=\"" + resource.getFilename() + "\"")
+//                .body(resource);
+//    }
 
     @DeleteMapping("{userId}")
     public ResponseEntity<?> delete(@PathVariable("userId") Long id) {

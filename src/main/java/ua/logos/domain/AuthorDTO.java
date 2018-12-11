@@ -16,5 +16,5 @@ public class AuthorDTO {
 
     private String life;
 
-    private String image;
+//    private String image;
 }

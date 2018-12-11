@@ -14,21 +14,19 @@ public interface BookService {
 
     BookDTO findBookByAuthor(String name);
 
-    void deleteBook(Long id);
-
-    BookDTO changeAuthor(Long id);
-
-    BookDTO changeName(Long id);
-
-    BookDTO changeShortInfo(Long id);
-
-    BookDTO changeLanguage(Long id);
-
-    BookDTO changeDate(Long id);
-
-    BookDTO changeQuantity(Long id);
-
-    BookDTO changePrice(Long id);
+//    BookDTO changeAuthor(Long id);
+//
+//    BookDTO changeName(Long id);
+//
+//    BookDTO changeShortInfo(Long id);
+//
+//    BookDTO changeLanguage(Long id);
+//
+//    BookDTO changeDate(Long id);
+//
+//    BookDTO changeQuantity(Long id);
+//
+//    BookDTO changePrice(Long id);
 
     List<BookDTO> findAllBooks();
 

@@ -1,6 +1,5 @@
 package ua.logos.service;
 
-import org.springframework.data.domain.Pageable;
 import ua.logos.domain.AuthorDTO;
 
 import java.util.List;
@@ -14,7 +13,5 @@ public interface AuthorService {
 
     void deleteAuthorById(Long id);
 
-    List<AuthorDTO> findAuthorsByPage(Pageable pageable);
-
-    void addImageToAuthor (Long id, String fileName);
+//    void addImageToAuthor (Long id, String fileName);
 }
