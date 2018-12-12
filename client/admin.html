@@ -461,9 +461,9 @@
                     uploadImage(authorId);
                 });
             } else {
+                window.location.href = 'index.html';
                 $('#ordersLink').hide();
                 $('#logOutButton').hide();
-                window.location.href = 'index.html';
             }
         });
 
@@ -523,13 +523,9 @@
         function createUser() {
             let login = $('#loginUser').val();
             let password = $('#passwordUser').val();
-            let image = $('#imageUser').val();
-            console.log(name + " " + password + " " + userType + " " +
-                image);
             let user = {
                 login: login,
-                password: password,
-                image: image
+                password: password
             };
 
             $.ajax({

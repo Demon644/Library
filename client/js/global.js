@@ -36,6 +36,7 @@ function loadBook() {
                                     <h4 class="card-title">${value.name}</h4>
                                     <h5>${value.author.name}</h5>
                                     <h5>${value.category.category}</h5>
+                                    <h5>Language: ${value.language}</h5>
                                     <p class="card-text">${value.short_info}</p>
                                     <a id="book-${value.id}" href="#" class="btn btn-primary" data-toggle="modal" data-target="#orderInfo">Buy for ${value.price} $</a>
                                 </div>
