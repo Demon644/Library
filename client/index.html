@@ -3,138 +3,687 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" content="#05386B" />
   <title>Online Library</title>
   <link rel="stylesheet" href="/css/bootstrap4.min.css">
   <!-- <link rel="stylesheet" href="/css/fontawesome.min.css"> -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link href="/css/styles.css" rel="stylesheet">
 
 </head>
 
-<body aria-busy="true">
+<body>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-toggleable-sm" id="shownav" role="navigation" style="margin-bottom : 35px; font-weight: bolder;">
+  <nav class="navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar fixed-top shadow " id="shownav"
+    role="navigation">
+
     <div class="container">
-      <a class="navbar-brand" href="/index.html">Online Library</a>
-      <button class="navbar-toggler float-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">☰
-      </button>
+
+      <a class="navbar-brand" href="/index.html"><img src="okl-logo_full.svg" width="" height="30"
+          class="d-inline-block align-top"></a>
+
+      <button class="navbar-toggler float-right hidden-md-up" type="button" data-toggle="collapse"
+        data-target="#exCollapsingNavbar">☰</button>
+
       <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-        <ul class="nav navbar-nav">
-          <li class="nav-item"><a href="/index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="/orders.html" class="nav-link" id="ordersLink">Orders</a></li>
+
+        <ul class="nav navbar-nav ">
+          <li class="nav-link"><a href="/index.html" class="nav-link">Home</a></li>
+          <li class="nav-link"><a href="/orders.html" class="nav-link" id="ordersLink">Orders</a></li>
         </ul>
+
         <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-          <li class="nav-item order-2 order-md-1" id="logOutButton">
-            <button type="button" class="btn btn-primary btn-block" style="font-weight: bolder">Log out</button>
+          <li class="nav-item order-2 order-md-1 active" id="logOutButton">
+            <button type="button" class="btn btn-primary btn-block" style="display:none">Log out</button>
           </li>
           <li class="dropdown order-1" id="showLoginDropdown">
-            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle"
-              style="font-weight: bolder">Login
-              <span class="caret"></span></button>
+
+            <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+              class="btn btn-primary dropdown-toggle active">Login
+              <span class="caret"></span>
+            </button>
+
             <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenu1">
-              <li class="px-3 py-2">
-                <form class="form" role="form" id="signInForm">
+
+              <li class="px-3 py-1">
+
+                <form class="form mt-3" role="form" id="signInForm">
+
                   <div class="form-group">
                     <input id="loginInput" placeholder="Login" class="form-control form-control-sm" type="text"
-                      required="">
+                      required=true>
                   </div>
+
                   <div class="form-group">
-                    <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password"
-                      required="">
+                    <input id="passwordInput" placeholder="Password" class="form-control form-control-sm"
+                      type="password" required=true>
                   </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                  </div>
+
                   <div class="form-group text-center">
-                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Register</a></small>
+                    <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+                    <small>
+                      <a href="#" data-toggle="modal" data-target="#modalPassword" style="color: #05386B">Register</a>
+                    </small>
                   </div>
+
                 </form>
+
               </li>
+
             </ul>
+
           </li>
+
         </ul>
+
       </div>
+
     </div>
+
   </nav>
 
-  <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+
     <div class="modal-dialog">
+
       <div class="modal-content">
+
         <div class="modal-header">
           <h3>Register</h3>
           <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
+
         <div class="modal-body">
           <form class="form" role="form" id="signUpForm">
+
             <div class="form-group">
-              <input id="loginInputReg" placeholder="Login" class="form-control form-control-sm" type="text" required="">
+              <input id="loginInputReg" placeholder="Login" class="form-control form-control-sm" type="text"
+                required="">
             </div>
+
             <div class="form-group">
               <input id="passwordInputReg" placeholder="Password" class="form-control form-control-sm" type="password"
                 required="">
             </div>
+
             <div class="form-group">
-              <input id="passwordInputAgain" placeholder="Repeat password" class="form-control form-control-sm" type="password"
-                required="">
+              <input id="passwordInputAgain" placeholder="Repeat password" class="form-control form-control-sm"
+                type="password" required="">
             </div>
+
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
               <button type="submit" class="btn btn-primary">Register</button>
             </div>
+
           </form>
         </div>
 
       </div>
+
     </div>
+
   </div>
 
   <div id="orderInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+
+    <div class="modal-dialog modal-dialog-centered data-keyboard">
+
+      <div class="modal-content text-center">
+
         <div class="modal-header">
           <h3>Order info</h3>
           <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
+
         <div class="modal-body">
           <form class="form" role="form" id="orderForm">
+
             <div class="form-group">
               <input id="firstNameInput" placeholder="First name" class="form-control form-control-sm" type="text"
                 required="">
             </div>
+
             <div class="form-group">
               <input id="lastNameInput" placeholder="Last name" class="form-control form-control-sm" type="text"
                 required="">
             </div>
+
             <div class="form-group">
               <input id="phoneNumberInput" placeholder="Phone number" class="form-control form-control-sm" type="tel"
                 required="">
             </div>
+
             <div class="form-group">
-              <input id="deliverPlaceInput" placeholder="Delivery address" class="form-control form-control-sm" type="text"
-                required="">
+              <input id="deliverPlaceInput" placeholder="Delivery address" class="form-control form-control-sm"
+                type="text" required="">
             </div>
+
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
               <button type="submit" class="btn btn-primary">Confirm purchase</button>
             </div>
+
           </form>
+
         </div>
 
       </div>
+
     </div>
-  </div>
-  <div style="margin: 35px;border-radius:15px;background-color: hsl(195, 100%, 60%,0.4);">
-    <div class="container-fluid">
-      <div style="margin-top: 60px;" id="books">
-        <div class="card-deck">
-          
-        </div>
-      </div>
-    </div>
+
   </div>
 
+  <div class="" style="margin-top: 100px;" id="books">
+
+    <div class="card-deck mx-4 justify-content-around">
+
+      <div>
+
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+
+          <ul class="list-group list-group-flush">
+
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+
+            </div>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <!-- Spammed cards for testing purposes. Naturaly, they are generated. -->
+
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card mb-4 shadow">
+          <img class="card-img-top img-fluid" src="14.jpg" alt="Card image cap">
+          <div class="card-img-overlay text-center">
+            <h5 class="card-title">${value.price} $</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div class="card-body list-group-item">
+              <h5 class="card-title text-center">${value.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+              <p class="card-text">${value.author.name}</p>
+              <p class="card-text ">Language: ${value.language}</p>
+              <p class="card-text">${value.short_info}</p>
+              <div class="text-center">
+                <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                  data-target="#orderInfo">Buy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap4.min.js"></script>
@@ -143,14 +692,30 @@
 
 
   <script>
+    // $(window).on('mousemove', function (e) {
+    //   var w = $(window).width();
+    //   var h = $(window).height();
+    //   var offsetX = 0.5 - e.pageX / w;
+    //   var offsetY = 0.5 - e.pageY / h;
+
+    //   $(".parallax").each(function (i, el) {
+    //     var offset = parseInt($(el).data('offset'));
+    //     var translate = "translate3d(" + Math.round(offsetX * offset) + "px," + Math.round(offsetY * offset) +
+    //       "px, 0px)";
+
+    //     $(el).css({
+    //       '-webkit-transform': translate,
+    //       'transform': translate,
+    //       'moz-transform': translate
+    //     });
+    //   });
+    // });
+
     $(window).scroll(function () {
-      if ($(window).scrollTop() >= 50) {
-        $('.navbar').css('background', 'rgba(183, 244, 247, 0.9)');
-        $(".navbar").hover(function () {
-          $(".navbar").addClass("dropdown:hover")
-        });
+      if ($(window).scrollTop() >= 15) {
+        $('.navbar').css('background', '#8EE4AF');
       } else {
-        $('.navbar').css('background', 'transparent');
+        $('.navbar').css('background', '#5CDB95');
       }
     });
 
@@ -159,10 +724,8 @@
       let token = window.localStorage.getItem('auth_token');
       if (token) {
         userLoginParsed = getLoginFromJwt(token);
-        $('#showLoginDropdown').attr("hidden", "true");
-        $('#logOutButton').attr("display", "block");
-      } else {
-        $('#logOutButton').attr("hidden", "false");
+        $('#showLoginDropdown').hide();
+        $('#logOutButton').css("display", "block");
       }
       // $.ajaxSetup({
       //   headers: {
@@ -242,7 +805,7 @@
         })
 
       } else {
-        alert('Wrong password')
+        alert('Passwords does not match')
       }
     }
 
@@ -270,7 +833,6 @@
           if (data.status == 201) {
             alert('Order created');
             $(location).attr('href', 'index.html');
-            //$(location).attr('href', 'index.html')
           }
         }
       })

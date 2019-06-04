@@ -5,9 +5,9 @@ let userLoginParsed = '';
 function logout() {
     window.localStorage.removeItem('auth_token');
     location.reload();
-  }
+}
 
-  function getLoginFromJwt (token) {
+function getLoginFromJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64)).sub;
@@ -22,15 +22,15 @@ function loadBook() {
             if (data.status == 200) {
                 console.log(data)
                 let total = data.responseJSON.length;
-                
-                $.each(data.responseJSON, function(key, value) {
+
+                $.each(data.responseJSON, function (key, value) {
                     $('#books > .card-deck').append( // col-auto mb-3 mx-auto
                         // <div class="col-auto mb-3">
                         // style="width: 21.3rem;"
                         // col-lg-3
                         `
                         <div class="col-sm-6 col-md-3">
-                            <div class="card mb-4" style="width: 91%; background-color: transparent;">
+                            <div class="card mb-4" style="width: 91%; background-color: #05386B;">
                                 <img class="card-img-top" style="height: 300px; width : 100%" src="${serverURL}book/image?file=${value.image}" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title">${value.name}</h4>
@@ -44,10 +44,9 @@ function loadBook() {
                         </div>
                         
                         `
-                        )
+                    )
                 });
-            }}
-      });
+            }
+        }
+    });
 };
-
-

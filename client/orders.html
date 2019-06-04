@@ -1,94 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- WORK IN PROGRESS -->
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Orders</title>
     <link rel="stylesheet" href="/css/bootstrap4.min.css">
     <!-- <link rel="stylesheet" href="/css/fontawesome.min.css"> -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 
 <body aria-busy="true">
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-toggleable-sm" id="shownav" role="navigation"
-        style="margin-bottom : 35px; font-weight: bolder;">
+    <nav class="navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar fixed-top shadow " id="shownav"
+        role="navigation">
+
         <div class="container">
-            <a class="navbar-brand" href="/index.html">Online Library</a>
-            <button class="navbar-toggler float-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">☰
-            </button>
+
+            <a class="navbar-brand" href="/index.html"><img src="okl-logo_full.svg" width="" height="30"
+                    class="d-inline-block align-top"></a>
+
+            <button class="navbar-toggler float-right hidden-md-up" type="button" data-toggle="collapse"
+                data-target="#exCollapsingNavbar">☰</button>
+
             <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="/index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="/orders.html" class="nav-link">Orders</a></li>
+
+                <ul class="nav navbar-nav ">
+                    <li class="nav-link"><a href="/index.html" class="nav-link">Home</a></li>
+                    <li class="nav-link"><a href="/orders.html" class="nav-link" id="ordersLink">Orders</a></li>
                 </ul>
+
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                    <li class="nav-item order-2 order-md-1" id="logOutButton">
-                        <button type="button" class="btn btn-primary btn-block" style="font-weight: bolder">Log out</button>
+                    <li class="nav-item order-2 order-md-1 active" id="logOutButton">
+                        <button type="button" class="btn btn-primary btn-block" style="display:none">Log out</button>
                     </li>
                     <li class="dropdown order-1" id="showLoginDropdown">
-                        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle"
-                            style="font-weight: bolder">Login
-                            <span class="caret"></span></button>
+
+                        <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            class="btn btn-primary dropdown-toggle active">Login
+                            <span class="caret"></span>
+                        </button>
+
                         <ul class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenu1">
-                            <li class="px-3 py-2">
-                                <form class="form" role="form" id="signInForm">
+
+                            <li class="px-3 py-1">
+
+                                <form class="form mt-3" role="form" id="signInForm">
+
                                     <div class="form-group">
                                         <input id="loginInput" placeholder="Login" class="form-control form-control-sm"
-                                            type="text" required="">
+                                            type="text" required=true>
                                     </div>
+
                                     <div class="form-group">
-                                        <input id="passwordInput" placeholder="Password" class="form-control form-control-sm"
-                                            type="password" required="">
+                                        <input id="passwordInput" placeholder="Password"
+                                            class="form-control form-control-sm" type="password" required=true>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                    </div>
+
                                     <div class="form-group text-center">
-                                        <small><a href="#" data-toggle="modal" data-target="#modalPassword">Register</a></small>
+                                        <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+                                        <small>
+                                            <a href="#" data-toggle="modal" data-target="#modalPassword"
+                                                style="color: #05386B">Register</a>
+                                        </small>
                                     </div>
+
                                 </form>
+
                             </li>
+
                         </ul>
+
                     </li>
+
                 </ul>
+
             </div>
+
         </div>
+
     </nav>
 
-    <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+
         <div class="modal-dialog">
+
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h3>Register</h3>
-                    <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
+                    <button type="button" class="close font-weight-light" data-dismiss="modal"
+                        aria-hidden="true">×</button>
                 </div>
+
                 <div class="modal-body">
                     <form class="form" role="form" id="signUpForm">
+
                         <div class="form-group">
-                            <input id="loginInputReg" placeholder="Login" class="form-control form-control-sm" type="text"
-                                required="">
+                            <input id="loginInputReg" placeholder="Login" class="form-control form-control-sm"
+                                type="text" required="">
                         </div>
+
                         <div class="form-group">
                             <input id="passwordInputReg" placeholder="Password" class="form-control form-control-sm"
                                 type="password" required="">
                         </div>
+
                         <div class="form-group">
-                            <input id="passwordInputAgain" placeholder="Repeat password" class="form-control form-control-sm"
-                                type="password" required="">
+                            <input id="passwordInputAgain" placeholder="Repeat password"
+                                class="form-control form-control-sm" type="password" required="">
                         </div>
+
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>
+
                     </form>
                 </div>
 
             </div>
+
         </div>
+
     </div>
 
     <div class="card p-3 bg-transparent" style="margin-top: 60px;border: none;">
@@ -98,12 +137,13 @@
         <div class="card-block" style="border : none;">
             <ul id="tabsJustified" class="nav nav-tabs justify-content-center" style="border : none;">
                 <li class="nav-item">
-                    <a href="" data-target="#SearchOrderTab" data-toggle="tab" class="nav-link small text-uppercase active">Search
+                    <a href="" data-target="#SearchOrderTab" data-toggle="tab"
+                        class="nav-link small text-uppercase active">Search
                         orders</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#YourOrders" data-toggle="tab" class="nav-link small text-uppercase" id="yourOrdersTab">Your
-                        orders</a>
+                    <a href="" data-target="#YourOrders" data-toggle="tab" class="nav-link small text-uppercase"
+                        id="yourOrdersTab" style="display:none">Your orders</a>
                 </li>
             </ul>
         </div>
@@ -170,13 +210,10 @@
 
     <script>
         $(window).scroll(function () {
-            if ($(window).scrollTop() >= 50) {
-                $('.navbar').css('background', 'rgba(183, 244, 247, 0.9)');
-                $(".navbar").hover(function () {
-                    $(".navbar").addClass("dropdown:hover")
-                });
+            if ($(window).scrollTop() >= 15) {
+                $('.navbar').css('background', '#8EE4AF');
             } else {
-                $('.navbar').css('background', 'transparent');
+                $('.navbar').css('background', '#5CDB95');
             }
         });
         $(document).ready(function () {
@@ -184,13 +221,10 @@
             let token = window.localStorage.getItem('auth_token');
             if (token) {
                 userLoginParsed = getLoginFromJwt(token);
-                $('#showLoginDropdown').attr("hidden", "true");
-                $('#logOutButton').attr("display", "block");
-                $('#yourOrdersTab').attr("display", "block");
+                $('#showLoginDropdown').hide();
+                $('#logOutButton').css("display", "block");
+                $('#yourOrdersTab').css("display", "block");
                 loadOrderByLogin(userLoginParsed);
-            } else {
-                $('#yourOrdersTab').attr("hidden", "false");
-                $('#logOutButton').attr("hidden", "false");
             }
             $('#signInForm').submit(function (e) {
                 e.preventDefault();

@@ -1,11 +1,137 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body {
-    height: 100%; 
-    background: url(/2144.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    height: 100%;
+    min-width: 575px;
+    background-image: url("/bg.jpg");
+    -webkit-background-size: auto;
+    -moz-background-size: auto;
+    -o-background-size: auto;
+    background-size: auto;
     font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat;
+}
+
+.nav-item {
+    font-weight: 700;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #05386B;
+    border-color: #005a5a
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: rgb(4, 55, 107);
+    border-color: transparent
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 90, 90, 0.5)
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: #fff;
+    background-color: teal;
+    border-color: transparent
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #05386B;
+    border-color: transparent
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 90, 90, 0.5)
+}
+
+.btn-outline-primary {
+    color: teal;
+    background-color: transparent;
+    background-image: none;
+    border-color: teal
+}
+
+.btn-outline-primary:hover {
+    color: #222;
+    background-color: #009a9a;
+    border-color: teal
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 128, 128, 0.5)
+}
+
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+    color: teal;
+    background-color: transparent
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.show>.btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(6, 79, 153);
+    border-color: teal
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 128, 128, 0.5)
+}
+
+html {
+    height: 100%;
+}
+
+.navbar {
+    transition: background-color 0.5s ease;
+    width: 100%;
+    height: 80px;
+    margin-bottom: 35px;
+    background: #5CDB95;
+}
+
+.dropdown-menu {
+    background: #5CDB95;
+}
+
+.form-control {
+    font-weight: 700;
+    color: #05386B;
+}
+
+.card {
+    width: 400px;
+    background-color: #8EE4AF;
+}
+
+.card-img-top {
+    height: 300px;
+    width: 100%;
+}
+
+.card-title {
+    background: #EDF5E1;
+    border-radius: 15px;
+}
+
+.card-body {
+    width: 100%;
+    background-color: #8EE4AF;
 }
