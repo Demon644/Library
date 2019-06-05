@@ -29,19 +29,32 @@ function loadBook() {
                         // style="width: 21.3rem;"
                         // col-lg-3
                         `
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card mb-4" style="width: 91%; background-color: #05386B;">
-                                <img class="card-img-top" style="height: 300px; width : 100%" src="${serverURL}book/image?file=${value.image}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h4 class="card-title">${value.name}</h4>
-                                    <h5>${value.author.name}</h5>
-                                    <h5>${value.category.category}</h5>
-                                    <h5>Language: ${value.language}</h5>
-                                    <p class="card-text">${value.short_info}</p>
-                                    <a id="book-${value.id}" href="#" class="btn btn-primary" data-toggle="modal" data-target="#orderInfo">Buy for ${value.price} $</a>
-                                </div>
+                        <div>
+                        <div class="card mb-4 shadow">
+                        <img class="card-img-top img-fluid" src="${serverURL}book/image?file=${value.image}" alt="Card image cap">
+              
+                          
+              
+                        <ul class="list-group list-group-flush">
+              
+                          <div class="card-body list-group-item">
+                            <h5 class="card-title text-center">${value.name}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">${value.category.category}</h6>
+                            <p class="card-text">${value.author.name}</p>
+                            <p class="card-text ">Language: ${value.language}</p>
+                            <p class="card-text">${value.short_info}</p>
+                            <p class="card-text text-center" style="border-radius: 25px; background: #EDF5E1;">${value.price} $</p>
+              
+                            <div class="text-center">
+                              <a id="book-${value.id}" href="#" class="btn btn-primary shadow" data-toggle="modal"
+                                data-target="#orderInfo">Buy</a>
                             </div>
-                        </div>
+              
+                          </div>
+              
+                        </ul>
+              
+                      </div>
                         
                         `
                     )
